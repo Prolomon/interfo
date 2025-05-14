@@ -6,7 +6,7 @@
         <div className="w-96 max-md:w-11/12 mx-auto p-3 rounded-lg shadow border border-gray-200">
           <h5 className="text-sm font-semibold pb-2">Error Message</h5>
             <p className="text-base text-gray-800">{error.message}</p>
-            <button className="rounded-md bg-primary text-black px-2 py-1.5 text-sm mt-3 w-full" onClick={reset}>Reload</button>
+            <button className="rounded-md bg-primary text-white px-2 py-1.5 text-sm mt-3 w-full" onClick={reset}>Reload</button>
         </div>
       </div>
     );
