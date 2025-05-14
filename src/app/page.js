@@ -35,11 +35,10 @@ export default async function Home() {
         <header className="w-full border-b border-muted">
             <div className="w-11/12 py-4 mx-auto flex gap-3 items-center justify-between">
                 <h2 className="text-2xl font-bold">Interfo</h2>
-                <Button>Download</Button>
             </div>
         </header>
         <div className="w-11/12 mx-auto mt-2">
-            <h4 className="font-semibold text-lg">Welcome Solomon,</h4>
+            <h4 className="font-semibold text-lg">Welcome to Interfo,</h4>
             {/* Optionally, display an error message to the user if device fetching failed */}
             {deviceError && (
               <p className="text-red-500 mt-2">

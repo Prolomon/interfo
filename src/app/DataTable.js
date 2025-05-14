@@ -31,6 +31,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import * as XLSX from "xlsx";
 const i = 0
 
 export const columns = [
@@ -124,6 +125,23 @@ export function DataTable({ dataList = [] }) {
       rowSelection,
     },
   })
+
+  // Function to handle Excel download
+  const handleDownloadExcel = () => {
+    // Prepare data: remove the "select" column and only export visible columns
+    const visibleColumns = columns.filter(col => col.accessorKey);
+    const exportData = dataList.map(row =>
+      visibleColumns.reduce((acc, col) => {
+        acc[col.header] = row[col.accessorKey] || "";
+        return acc;
+      }, {})
+    );
+
+    const worksheet = XLSX.utils.json_to_sheet(exportData);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "TableData");
+    XLSX.writeFile(workbook, "table_data.xlsx");
+  };
 
   return (
     <div className="w-full">
@@ -234,6 +252,13 @@ export function DataTable({ dataList = [] }) {
             disabled={!table.getCanNextPage()}
           >
             Next
+          </Button>
+          <Button
+            variant="default"
+            size="sm"
+            onClick={handleDownloadExcel}
+          >
+            Download Excel
           </Button>
         </div>
       </div>
